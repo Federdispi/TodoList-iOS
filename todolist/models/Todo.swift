@@ -13,6 +13,9 @@ class Todo {
     var done: Bool = false
     var date: Date
     
+    /*
+     Constructor
+     */
     init(nom: String, desc: String, date: Date) {
         self.nom = nom
         self.desc = desc

@@ -21,6 +21,7 @@ class AddViewController: UIViewController {
         formatter.dateFormat = "dd/MM/yyyy"
         todoDate.text = formatter.string(from: date)
         
+        // Create a DatePicker and a Toolbar for the Text Field
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.frame.size = CGSize(width: 0, height: 250)
@@ -31,7 +32,7 @@ class AddViewController: UIViewController {
         let cancelButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(doneDatePicker(sender:)))
         toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
 
-        // add toolbar to textField
+        // Add the Toolbar and the DatePicker to the TextField
         todoDate.inputAccessoryView = toolbar
         todoDate.inputView = datePicker
     }

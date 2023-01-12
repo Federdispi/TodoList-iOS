@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return category!.sections.count
     }
     
+    // Sets the title of the Section
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return category!.sections[section].title
     }
@@ -22,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return category!.sections[section].todos.count
     }
     
+    // Creates the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         let todo = category!.sections[indexPath.section].todos[indexPath.row]
@@ -34,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return cell
     }
     
+    // Deletes the cell (and the section if it's empty)
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
                 todoList.remove(at: indexPath.row)
@@ -46,6 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
             }
         }
     
+    // Filters the TodoList with the SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredTodoList = []
         
@@ -88,6 +92,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         searchBar.delegate = self
     }
     
+    // Function to group the todos in sections sorted by date
     func groupTODOsByDate(from todos: [Todo]) -> [Section] {
         let grouped = Dictionary(grouping: todos) {
             $0.date
@@ -101,6 +106,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return sections
     }
     
+    // Passes the selected Todo information to the next View
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "details" {
             let detailsViewController = segue.destination as! DetailsViewController
@@ -109,6 +115,8 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
             detailsViewController.todo = category!.sections[myIndexPath.section].todos[row]
         }
     }
+    
+    // Save the modifications made to a Todo
     @IBAction func unwindFromDetailsVC(_ unwindSegue: UIStoryboardSegue) {
         let detailsViewController = unwindSegue.source as! DetailsViewController
         if detailsViewController.todoTitle!.text != "" {
@@ -123,6 +131,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         todoListView.reloadData()
     }
     
+    // Adds a new Todo
     @IBAction func unwindFromAddVC(_ unwindSegue: UIStoryboardSegue) {
         let addViewController = unwindSegue.source as! AddViewController
         if addViewController.todoTitle!.text != "" {

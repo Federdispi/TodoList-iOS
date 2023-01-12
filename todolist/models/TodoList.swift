@@ -11,6 +11,9 @@ class TodoList {
     var category: String
     var sections: [Section]
     
+    /*
+     Constructor
+     */
     init(category: String, sections: [Section]) {
         self.category = category
         self.sections = sections

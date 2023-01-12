@@ -8,10 +8,12 @@
 import UIKit
 
 class CategoriesViewController: UIViewController, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
     
+    // Creates the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         let category = categories[indexPath.row]
@@ -23,6 +25,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    // Deletes the cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             categories.remove(at: indexPath.row)
@@ -34,6 +37,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var categoriesTableView: UITableView!
     
+    // Passes the selected category in the next View
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "main" {
             let mainViewController = segue.destination as! ViewController
@@ -48,6 +52,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    // Modifies the category
     @IBAction func unwindFromModifyVC(_ unwindSegue: UIStoryboardSegue) {
         let modifyViewController = unwindSegue.source as! ModifyViewController
         if modifyViewController.categoryTitle!.text != "" {
@@ -56,6 +61,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource {
         categoriesTableView.reloadData()
     }
     
+    // Adds a new category
     @IBAction func unwindFromNewVC(_ unwindSegue: UIStoryboardSegue) {
         let newViewController = unwindSegue.source as! NewViewController
         if newViewController.categoryTitle!.text != "" {
