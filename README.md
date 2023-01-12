@@ -1,7 +1,7 @@
 # TodoList iOS
 TP Programming Application Mobile iOS
 
-La version [pdf](DI%20SPIRITO%20Federico%20TP%20Programmation%20iOS.pdf) de ce sujet est également disponible. [image](img1.png)
+La version [pdf](DI%20SPIRITO%20Federico%20TP%20Programmation%20iOS.pdf) de ce sujet est également disponible.
 
 ## Introduction
 
